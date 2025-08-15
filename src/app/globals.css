@@ -1,26 +1,196 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Cyberpunk color scheme */
+  --background: #0a0f1c;
+  --foreground: #e0e6ed;
+  --primary-cyan: #00d4ff;
+  --primary-orange: #ff6b35;
+  --accent-cyan: #00ffff;
+  --accent-orange: #ff4500;
+  --glass-bg: rgba(255, 255, 255, 0.05);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --neon-glow: 0 0 20px currentColor;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --font-sans: var(--font-rajdhani), system-ui, sans-serif;
+  --font-mono: var(--font-orbitron), monospace;
 }
 
 body {
-  background: var(--background);
+  background: linear-gradient(135deg, #0a0f1c 0%, #1a1a2e 50%, #16213e 100%);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-rajdhani), system-ui, sans-serif;
+  /* Mobile optimizations */
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  overscroll-behavior: none;
+  min-height: 100vh;
+  background-attachment: fixed;
+}
+
+/* iOS viewport fix */
+html, body {
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Use the actual visible viewport height */
+.viewport-height {
+  height: 100vh; /* Fallback */
+}
+
+/* iOS specific adjustments */
+@supports (-webkit-touch-callout: none) {
+  .viewport-height {
+    /* Use the smaller of the two for iOS */
+    height: 100vh;
+    min-height: 100vh;
+  }
+}
+
+/* Dynamic height will be set by JavaScript */
+.dynamic-viewport-height {
+  /* Will be set by JS to window.innerHeight */
+}
+
+/* Prevent zoom on inputs and buttons */
+input, button, select, textarea {
+  font-size: 16px;
+}
+
+/* Custom scrollbar for upgrades panel */
+.upgrades-panel::-webkit-scrollbar {
+  width: 4px;
+}
+
+.upgrades-panel::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+
+.upgrades-panel::-webkit-scrollbar-thumb {
+  background: rgba(0, 212, 255, 0.5);
+  border-radius: 10px;
+}
+
+.upgrades-panel::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 212, 255, 0.8);
+}
+
+/* Disable text selection on game elements */
+.no-select {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Custom animations */
+@keyframes fadeUpOut {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+@keyframes ping {
+  75%, 100% {
+    transform: scale(1.1);
+    opacity: 0;
+  }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Cyberpunk utility classes */
+.cyberpunk-panel {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 212, 255, 0.3);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.cyberpunk-button {
+  background: linear-gradient(135deg, rgba(0, 212, 255, 0.2), rgba(255, 107, 53, 0.2));
+  border: 1px solid rgba(0, 212, 255, 0.5);
+  backdrop-filter: blur(5px);
+  transition: all 0.3s ease;
+  text-shadow: 0 0 10px currentColor;
+}
+
+.cyberpunk-button:hover {
+  border-color: rgba(0, 212, 255, 0.8);
+  box-shadow: 
+    0 0 20px rgba(0, 212, 255, 0.4),
+    inset 0 0 20px rgba(0, 212, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+.cyberpunk-button:active {
+  transform: translateY(0);
+  box-shadow: 
+    0 0 15px rgba(0, 212, 255, 0.6),
+    inset 0 0 15px rgba(0, 212, 255, 0.2);
+}
+
+.neon-text {
+  text-shadow: 
+    0 0 5px currentColor,
+    0 0 10px currentColor,
+    0 0 15px currentColor;
+}
+
+.neon-cyan {
+  color: #00d4ff;
+  text-shadow: 
+    0 0 5px #00d4ff,
+    0 0 10px #00d4ff,
+    0 0 15px #00d4ff;
+}
+
+.neon-orange {
+  color: #ff6b35;
+  text-shadow: 
+    0 0 5px #ff6b35,
+    0 0 10px #ff6b35,
+    0 0 15px #ff6b35;
+}
+
+.glass-panel {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }

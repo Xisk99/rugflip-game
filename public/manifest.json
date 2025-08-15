@@ -1,0 +1,27 @@
+{
+  "name": "RugFlip Tap",
+  "short_name": "RugFlip Tap",
+  "description": "🎮 Join the narrative to flip the 11.3B rugged from memecoins! The ultimate crypto revenge clicker game. 🚀",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0f1c",
+  "theme_color": "#00d4ff",
+  "orientation": "portrait-primary",
+  "categories": ["games", "entertainment", "crypto"],
+  "lang": "en",
+  "dir": "ltr",
+  "icons": [
+    {
+      "src": "/logo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
